@@ -38,6 +38,10 @@ public class ProdutoService {
 		produtos.put(id, produto);
 		return produto;
 	}
+
+	public void deletar(Integer id) {
+		produtos.remove(id);
+	}
 	
 	
 	

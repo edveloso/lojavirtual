@@ -53,6 +53,16 @@ public class ProdutoController {
 		return produtoService.alterar(id, produto);
 	}
 	
+	
+	@RequestMapping(
+			value = "/produtos/{id}",
+			method = RequestMethod.DELETE,
+			consumes = "application/json"
+			)
+	public void deletar(@PathVariable(value="id")  Integer id) {
+		 produtoService.deletar(id);
+	}
+	
 	public ProdutoService getProdutoService() {
 		return produtoService;
 	}
