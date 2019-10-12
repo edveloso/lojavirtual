@@ -33,6 +33,11 @@ public class ProdutoService {
 		produtos.put(count++, produto);
 		return produto;
 	}
+
+	public Produto alterar(Integer id, Produto produto) {
+		produtos.put(id, produto);
+		return produto;
+	}
 	
 	
 	
