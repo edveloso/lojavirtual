@@ -11,16 +11,25 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.infnet.lojavirtual.model.Produto;
 import br.edu.infnet.lojavirtual.service.ProdutoService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
-
+@Api
 @RestController
 public class ProdutoController {
 
-	
 	@Autowired
 	private ProdutoService produtoService;
 
-	
+
+	@ApiOperation(value = "Retorna uma lista de Produtos")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Lista retornada com sucesso"),
+			@ApiResponse(code = 400, message = "Erro na chamada da API"),
+			@ApiResponse(code = 500, message = "Erro no processamento da chamada")
+	})
 	@RequestMapping(value = "/produtos", 
 			method = RequestMethod.GET,
 			produces = "application/json"
@@ -32,8 +41,8 @@ public class ProdutoController {
 	@RequestMapping(
 			value = "/produtos",
 			method = RequestMethod.POST,
-			produces = "application/json",
-			consumes = "application/json"
+			produces = {"application/json", "application/xml"},
+			consumes = {"application/json", "application/xml"}
 			)
 	public Produto criar(@RequestBody Produto produto) {
 		
@@ -54,6 +63,7 @@ public class ProdutoController {
 	}
 	
 	
+	@ApiOperation(value = "Remove um produto")
 	@RequestMapping(
 			value = "/produtos/{id}",
 			method = RequestMethod.DELETE,

@@ -20,7 +20,7 @@ public class ProdutoService {
 		produtos = new TreeMap<Integer, Produto>();
 		count = 1;
 		produtos.put(count++, new Produto(1, "Galaxy s6", 2200.0));
-		produtos.put(count++, new Produto(2, "Allstar", 200.0));
+		produtos.put(count++, new Produto(2, null, 200.0));
 		produtos.put(count++, new Produto(3, "TV smart", 1000.0));
 	}
 
