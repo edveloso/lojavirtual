@@ -3,6 +3,8 @@ package br.edu.infnet.lojavirtual.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,11 +68,18 @@ public class ProdutoController {
 	@ApiOperation(value = "Remove um produto")
 	@RequestMapping(
 			value = "/produtos/{id}",
-			method = RequestMethod.DELETE,
-			consumes = "application/json"
+			method = RequestMethod.DELETE
 			)
-	public void deletar(@PathVariable(value="id")  Integer id) {
-		 produtoService.deletar(id);
+	public ResponseEntity<Object> deletar(@PathVariable(value="id")  Integer id) {
+		
+		Produto produto = produtoService.obterPeloId(id);
+		if(produto == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			produtoService.deletar(id);
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
 	}
 	
 	public ProdutoService getProdutoService() {

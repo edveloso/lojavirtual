@@ -42,6 +42,10 @@ public class ProdutoService {
 	public void deletar(Integer id) {
 		produtos.remove(id);
 	}
+
+	public Produto obterPeloId(Integer id) {
+		return produtos.get(id);
+	}
 	
 	
 	
